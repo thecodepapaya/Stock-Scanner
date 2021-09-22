@@ -75,6 +75,9 @@ class _CodeScannerState extends State<CodeScanner> {
         child: const Icon(Icons.qr_code_2_rounded),
         onPressed: () {
           data = '';
+          message = '';
+          file = null;
+          uploadedFileId = '';
           scanBarCode();
         },
       ),
