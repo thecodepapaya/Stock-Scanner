@@ -66,9 +66,7 @@ class _CodeScannerState extends State<CodeScanner> {
                 onPressed: data == '' ? null : takeAPicture),
             ElevatedButton(
               child: const Text("Upload to GSheet"),
-              //TODO: Undo comment
-              // onPressed: file == null ? null : uploadToDrive,
-              onPressed: file == null ? null : addToSheets,
+              onPressed: file == null ? null : uploadToDrive,
             ),
           ],
         ),
@@ -105,6 +103,7 @@ class _CodeScannerState extends State<CodeScanner> {
                   d3.Media(fileToUpload.openRead(), fileToUpload.lengthSync()));
       debugPrint("Uploaded file: " + res.toString());
       debugPrint("Uploaded file: " + res.id.toString());
+      uploadedFileId = res.id ?? '';
       addToSheets();
     } catch (e) {
       Fluttertoast.showToast(
