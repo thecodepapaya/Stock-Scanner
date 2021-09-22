@@ -1,0 +1,76 @@
+{
+  "project_info": {
+    "project_number": "339754259006",
+    "project_id": "scanner-to-gsheet",
+    "storage_bucket": "scanner-to-gsheet.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:339754259006:android:a1321931ac563d5afb376f",
+        "android_client_info": {
+          "package_name": "u_in.ac.iiitvadodara.scan_gsheet"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "339754259006-outsutg4ve4lhm9vgb2ntm31scar5gic.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBmZ5BeQX2leVUCob0le7P1dewGYA_s_J4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "339754259006-outsutg4ve4lhm9vgb2ntm31scar5gic.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:339754259006:android:5598e29e37d88633fb376f",
+        "android_client_info": {
+          "package_name": "u_in.ac.iiitvadodara.scanner_gsheet"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "339754259006-rr1et9hn818nkf2302kh1ipm84l1m867.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "u_in.ac.iiitvadodara.scanner_gsheet",
+            "certificate_hash": "b2850de86b6a78184a406c01118cde0fb4e017fd"
+          }
+        },
+        {
+          "client_id": "339754259006-outsutg4ve4lhm9vgb2ntm31scar5gic.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBmZ5BeQX2leVUCob0le7P1dewGYA_s_J4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "339754259006-outsutg4ve4lhm9vgb2ntm31scar5gic.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
