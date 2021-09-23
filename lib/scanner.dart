@@ -104,6 +104,7 @@ class _CodeScannerState extends State<CodeScanner> {
   }
 
   Future<void> saveLocally() async {
+    await Hive.openBox(Globals.boxName);
     try {
       DbData dbdata = DbData()
         ..barcodeData = data
@@ -112,11 +113,11 @@ class _CodeScannerState extends State<CodeScanner> {
         ..isUploaded = false
         ..sheetId = Globals.spreadSheetId;
       Hive.box<DbData>(Globals.boxName).add(dbdata);
+      Fluttertoast.showToast(msg: "Saved data locally");
+      resetAll();
     } catch (e) {
       Fluttertoast.showToast(msg: "Could not save locally. $e");
     }
-    Fluttertoast.showToast(msg: "Saved data locally");
-    resetAll();
     return Future.value();
   }
 
