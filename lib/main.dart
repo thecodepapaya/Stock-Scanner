@@ -13,6 +13,7 @@ void main() async {
   Globals.cameras = await availableCameras();
   await Hive.initFlutter();
   Hive.registerAdapter(DbDataAdapter());
+  await Hive.openBox<DbData>(Globals.boxName);
   runApp(const MyApp());
 }
 
