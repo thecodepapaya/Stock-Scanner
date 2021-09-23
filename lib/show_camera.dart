@@ -84,6 +84,7 @@ class _ShowCameraState extends State<ShowCamera> {
                 onPressed: () async {
                   XFile file = await controller.takePicture();
                   debugPrint("File from cam: $file");
+                  debugPrint("File from cam: ${file.path}");
                   Navigator.pop(context, file);
                 },
               ),

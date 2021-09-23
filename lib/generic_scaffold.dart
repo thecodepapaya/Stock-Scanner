@@ -3,16 +3,14 @@ import 'package:flutter/material.dart';
 import 'package:scan_gsheet/auth.dart';
 
 class GenericScaffold extends StatelessWidget {
-  const GenericScaffold({
-    Key? key,
-    required this.title,
-    this.body,
-    this.fab,
-  }) : super(key: key);
+  const GenericScaffold(
+      {Key? key, required this.title, this.body, this.fab, this.action})
+      : super(key: key);
 
   final String title;
   final Widget? body;
   final Widget? fab;
+  final Widget? action;
 
   @override
   Widget build(BuildContext context) {
@@ -37,6 +35,7 @@ class GenericScaffold extends StatelessWidget {
               Icons.logout,
             ),
           ),
+          if (action != null) action!,
         ],
       ),
       body: body,

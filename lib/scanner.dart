@@ -6,7 +6,9 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:googleapis/drive/v3.dart' as d3;
 import 'package:googleapis/sheets/v4.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:scan_gsheet/auth.dart';
+import 'package:scan_gsheet/db_data.dart';
 import 'package:scan_gsheet/globals.dart';
 import 'package:scan_gsheet/show_camera.dart';
 import 'package:scan_gsheet/generic_scaffold.dart';
@@ -62,11 +64,23 @@ class _CodeScannerState extends State<CodeScanner> {
             Text(message + " " + data),
             const SizedBox(height: 50),
             ElevatedButton(
-                child: const Text("Take a picture"),
-                onPressed: data == '' ? null : takeAPicture),
-            ElevatedButton(
-              child: const Text("Upload to GSheet"),
-              onPressed: file == null ? null : uploadToDrive,
+              child: const Text("Take a picture"),
+              onPressed: data == '' ? null : takeAPicture,
+            ),
+            const SizedBox(height: 15),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                ElevatedButton(
+                  child: const Text("Upload to GSheet"),
+                  onPressed: file == null ? null : uploadToDrive,
+                ),
+                const SizedBox(width: 20),
+                ElevatedButton(
+                  child: const Text("Save locally"),
+                  onPressed: file == null ? null : saveLocally,
+                ),
+              ],
             ),
           ],
         ),
@@ -74,10 +88,7 @@ class _CodeScannerState extends State<CodeScanner> {
       fab: FloatingActionButton(
         child: const Icon(Icons.qr_code_2_rounded),
         onPressed: () {
-          data = '';
-          message = '';
-          file = null;
-          uploadedFileId = '';
+          resetAll();
           scanBarCode();
         },
       ),
@@ -90,6 +101,23 @@ class _CodeScannerState extends State<CodeScanner> {
         .push(MaterialPageRoute(builder: (_) => const ShowCamera()));
     debugPrint("Returned file: $file");
     setState(() {});
+  }
+
+  Future<void> saveLocally() async {
+    try {
+      DbData dbdata = DbData()
+        ..barcodeData = data
+        ..filePath = file?.path
+        ..timestamp = DateTime.now().toIso8601String()
+        ..isUploaded = false
+        ..sheetId = Globals.spreadSheetId;
+      Hive.box<DbData>(Globals.boxName).add(dbdata);
+    } catch (e) {
+      Fluttertoast.showToast(msg: "Could not save locally. $e");
+    }
+    Fluttertoast.showToast(msg: "Saved data locally");
+    resetAll();
+    return Future.value();
   }
 
   Future<void> uploadToDrive() async {
@@ -140,5 +168,14 @@ class _CodeScannerState extends State<CodeScanner> {
       Fluttertoast.showToast(
           msg: 'Could not add new entry to GSheet. Error $e');
     }
+  }
+
+  void resetAll() {
+    setState(() {
+      data = '';
+      message = '';
+      file = null;
+      uploadedFileId = '';
+    });
   }
 }
