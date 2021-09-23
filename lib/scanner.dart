@@ -104,8 +104,8 @@ class _CodeScannerState extends State<CodeScanner> {
   }
 
   Future<void> saveLocally() async {
-    await Hive.openBox(Globals.boxName);
     try {
+      await Hive.openBox(Globals.boxName);
       DbData dbdata = DbData()
         ..barcodeData = data
         ..filePath = file?.path
