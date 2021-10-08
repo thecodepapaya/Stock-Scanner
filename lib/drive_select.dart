@@ -129,11 +129,11 @@ class _DriveSelectState extends State<DriveSelect> {
           .create(
               d3.File()
                 ..name =
-                    "scanned_image_${DateTime.now().millisecondsSinceEpoch}.jpg",
+                    "scanned_image_${filepath.split("/")[6]}",
               uploadMedia:
                   d3.Media(fileToUpload.openRead(), fileToUpload.lengthSync()));
       debugPrint("Uploaded file: " + result.id.toString());
-      var uploadedFileId = result.id ?? '';
+      var uploadedFileId = filepath.split("/")[6];
       addToSheets(
         barcodeData: barcodeData,
         sheetID: sheetID,
